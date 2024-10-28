@@ -1,21 +1,26 @@
+import { Route, Routes } from "react-router-dom"
+import Home from "./pages/Home"
+import { AuthContextProvider } from "./context/AuthContext"
+import ProtectedRoute from "./pages/ProtectedRoute"
+import Login from "./pages/Login"
+import SignUp from "./pages/SignUp"
+import Profile from "./pages/Profile"
+import Player from "./pages/Player"
 
-import './App.css'
-import Banner from './components/Banner'
-import Header from './components/Header'
-import Row from './components/Row'
-import { API_KEY } from './constants/constants'
 
 function App() {
 
   return (
-    <>
-      <Header/>
-      <Banner/>
-      <Row  url={`trending/all/week?api_key=${API_KEY}&language=en-US`} isSmall={false} title={"Trending Movies"}/>
-      <Row url={`discover/movie?api_key=${API_KEY}&with_genres=28`} isSmall={true} title={"Action Movies"}/>
-      <Row url={`discover/movie?api_key=${API_KEY}&with_genres=27`} isSmall={true} title={"Romatic Movies"}/>
-      <Row url={`discover/movie?api_key=${API_KEY}&with_genres=35`}  isSmall={true} title={"Korean Movies"}/>
-    </>
+    <AuthContextProvider>
+    <Routes>
+      <Route path={'/'} element={<Home/>}/>
+      <Route path={'/login'} element={<Login/>}/>
+      <Route path={'/signup'} element={<SignUp/>}/>
+      <Route path={'/profile'} element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
+      <Route path="/playvideo/:id" element={<ProtectedRoute><Player/></ProtectedRoute>} /> 
+    </Routes>
+    </AuthContextProvider>
+   
   )
 }
 
