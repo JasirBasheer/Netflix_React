@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Imageurl } from '../services/tmdb';
 import axios from 'axios';
-import { BiHeart } from 'react-icons/bi';
-import { FaHeart } from 'react-icons/fa';
 import Card from './Card';
-import { Link } from 'react-router-dom';
 
 interface RowProp {
   isSmall: boolean;
